@@ -18,7 +18,7 @@ app.use(
 
 app.use(express.json());
 // Rotas
-// Usuário autenticado
+// Usuário autenticado A
 app.use("/user", userRoutes);
 app.get("/user", authMiddleware, userRoutes, (req, res) => {
   res.status(200).send("sucesso")
