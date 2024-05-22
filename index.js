@@ -4,6 +4,7 @@ const cors = require("cors");
 const userRoutes = require("./routes/userRoutes");
 const authRoutes = require("./routes/authRoutes");
 const deckRoutes = require("./routes/deckRoutes");
+const authMiddleware = require("./middlewares/authMiddleware");
 
 dotenv.config();
 
@@ -19,6 +20,9 @@ app.use(express.json());
 // Rotas
 // Usuário autenticado
 app.use("/user", userRoutes);
+app.get("/user", authMiddleware, userRoutes, (req, res) => {
+  res.status(200).send("sucesso")
+})
 // Sem autenticação
 app.use("/auth", authRoutes);
 // Deck
